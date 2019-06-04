@@ -1,5 +1,4 @@
-#include<iostream>
-using namespace std;
+
 class DaThuc
 {
 private:
@@ -18,6 +17,13 @@ public:
 		for(int i = 0; i<= N; i++)
 			a[i] = 1;
 	};
+	DaThuc(int ar[],int n)
+	{
+		for(int i =0;i<n;i++)
+		{
+			a[i]=ar[i];
+		}
+	}
 	friend ostream & operator<<(ostream &out, const DaThuc &p)
 	{
 		for(int i = p.N; i>= 0; i--)
@@ -63,12 +69,58 @@ public:
 	};
 	DaThuc operator	+ (const DaThuc &b) const
 	{
-		int n[1000];
-		for (int i = 0;i <= N; i++)
+		int data[N];
+		if(N>b.N)
 		{
-			n[i]=this ->a[i]+b.a[i];
-			cout<<n[i]<<"X^"<<i<<"+";
-			return n[i];
+			
+			for (int i = N;i>=0;i--)
+			{
+				data[i]=a[i]+b.a[i];
+				if (data[i] != 0)
+			{
+				if (data[i] != 1 && i != 0)
+				{
+					cout<<data[i];
+				}
+				if (i>1)
+					cout<<"X^"<<i;
+				else if (i == 1)
+					cout<<"X";
+				else
+				{
+				
+					cout<<data[i];
+				}	
+				if (i > 0 && data[i] > 0)
+					cout<<"+";
+			}
 		}
-		
+		}
+		else
+		{
+			for (int i = b.N; i >= 0;i--)
+			{
+				data[i]= a[i]+b.a[i];
+				if (data[i] != 0)
+			{
+				if (data[i] != 1 && i != 0)
+				{
+					cout<<data[i];
+				}
+				if (i>1)
+					cout<<"X^"<<i;
+				else if (i == 1)
+					cout<<"X";
+				else
+				{
+				
+					cout<<data[i];
+				}	
+				if (i > 0 && data[i] > 0)
+					cout<<"+";
+			}
+		}
+		}
+	
 	};
+};
